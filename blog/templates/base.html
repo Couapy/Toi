@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bienvenue sur mon super Blog</title>
+    <meta name="theme-color" content="#fff">
+    {% block 'head' %}{% endblock %}
+</head>
+
+<body data-theme="light">
+    
+    {% include 'nav.html' %}
+
+    {% block 'body' %}{% endblock %}
+
+    {% include 'footer.html' %}
+
+</body>
+
+</html>

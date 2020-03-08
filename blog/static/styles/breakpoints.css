@@ -1,0 +1,12 @@
+@media screen and (max-width: 1440px) {
+  /** laptop L **/
+}
+@media screen and (max-width: 1024px) {
+  /** laptop **/
+}
+@media screen and (max-width: 768px) {
+  /** tablet **/
+}
+@media screen and (max-width: 425px) {
+  /** Mobile **/
+}

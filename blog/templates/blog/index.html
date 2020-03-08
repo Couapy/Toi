@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+<!-- SEO meta tags -->
+<meta name="description" content="ma super description">
+<meta name="robots" content="index, follow">
+<meta name="author" content="auteur">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="fr">
+
+<!-- OpenGraph meta tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="mon super titre">
+<meta property="og:site_name" content="Mon blog">
+<meta property="og:url" content="monurl">
+<meta property="og:image" content="url-illustration">
+<meta property="article:published_time" content="2020-02-15">
+<meta property="article:author" content="url-vers-mon-auteur">
+
+<!-- Twitter meta tags -->
+<meta name="twitter:card" content="app">
+<meta name="twitter:site" content="@twitteraccount">
+<meta name="twitter:description" content="ma super description">
+<meta name="twitter:app:name:iphone" content="Mon super blog">
+<meta name="twitter:app:id:iphone" content="">
+<meta name="twitter:app:name:ipad" content="Mon super blog">
+<meta name="twitter:app:id:ipad" content="">
+<meta name="twitter:app:name:googleplay" content="Mon super blog">
+<meta name="twitter:app:id:googleplay" content="">
+<meta name="twitter:app:country" content="fr">
+
+<!-- Style sheets -->
+<link rel="stylesheet" href="{% static 'styles/master.css' %}">
+<link rel="stylesheet" href="{% static 'styles/theme.css' %}">
+<link rel="stylesheet" href="{% static 'styles/blog.css' %}">
+
+<!-- Scripts -->
+<script src="{% static 'scripts/nav.js' %}" defer></script>
+<script src="{% static 'scripts/theme.js' %}" defer></script>
+<script src="{% static 'scripts/fakelinks.js' %}" defer></script>
+{% endblock %}
+
+{% block 'body' %}
+<main>
+  {% if posts %}
+    {% for post in posts %}
+    <article>
+      <div class="content{% if post.illustration %} illustrated{% endif %}">
+        {% if post.illustration %}
+        <div class="illustration" style="background-image: url({{ post.illustration }})"></div>
+        {% endif %}
+        <a href="{% url 'post' post.slug %}" class="overlay"></a>
+        <h2>{{ post.title }}</h2>
+        <span class="infos">Par <a href="#" class="author">{{ post.author }}</a> il y a une semaine</span>
+        <div class="categories">
+          {% for tag in post.tags.all %}
+          <a href="{% url 'tag' tag %}" class="category">{{ tag }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  {% else %}
+    <p style="color: var(--color-font)">Aucun article n'a été trouvé.</p>
+  {% endif %}
+</main>
+{% endblock %}

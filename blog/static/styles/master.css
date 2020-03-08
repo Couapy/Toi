@@ -1,0 +1,260 @@
+/** Base **/
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-body);
+  font-family: var(--font-primary);
+  overflow-x: hidden;
+  font-size: 19px;
+}
+
+h1 { font-size: 45px; }
+h2 { font-size: 36px; }
+h3 { font-size: 24px; }
+h4 { font-size: 19px; }
+h5 { font-size: 16px; }
+h6 { font-size: 13px; }
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: left!important;
+}
+
+/** Nav **/
+nav {
+  width: calc(100% - 170px);
+  max-width: 1200px;
+  min-height: 160px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+nav .nav-title {
+  width: 250px;
+  font-size: 40px;
+  font-weight: 700;
+  padding-right: 20px;
+}
+
+nav .nav-close {
+  display: none;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+nav .nav-close .hidden {
+  text-indent: -9999px;
+  visibility: hidden;
+  display: none;
+}
+
+nav .nav-close:before, .nav-close:after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 4px;
+    background: #969696;
+    top: 35px;
+    right: 25px;
+    -webkit-transition: background 0.15s ease;
+    transition: background 0.15s ease;
+}
+
+nav .nav-close:before {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+nav .nav-close:after {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+nav .nav-links {
+  z-index: 4;
+  flex: auto;
+  text-align: right;
+}
+
+nav .nav-links ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav .nav-links li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav .nav-links a {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  line-height: 6.5px;
+}
+
+nav a {
+  color: var(--color-font);
+  text-decoration: none;
+}
+
+nav .nav-overlay {
+  z-index: 3;
+  display: none;
+  position: fixed;
+  top: 0px;
+  right: -100vw;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.5;
+  background-color: black;
+  transition: 0.2s right ease-in-out;
+}
+
+nav .search-icon svg {
+  width: 17px;
+  height: 17px;
+  margin: 0 0 -4px 0;
+  fill: var(--color-font);
+}
+
+nav .nav-menu-button {
+  flex: auto;
+  display: none;
+  text-align: right;
+}
+
+nav #menu-button {
+  display: inline-block;
+  color: var(--color-font);
+  border: 1px solid var(--color-font);
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 19px;
+  cursor: pointer;
+  user-select: none;
+}
+
+nav #menu-button .menu-buttons-elements {
+  display: flex;
+  align-items: center;
+}
+
+nav #menu-button .burger {
+  font-size: 16px;
+  padding-right: 7px;
+}
+
+@media screen and (max-width: 768px) {
+  /* Smartphones and tablets */
+  nav {
+    width: calc(100% - 80px);
+  }
+
+  nav .nav-close {
+    display: inline;
+  }
+
+  nav .nav-links {
+    min-width: 250px;
+    max-width: 100vw;
+    padding: 64px 25px 20px 25px;
+    position: fixed;
+    top: 0px;
+    right: -250px;
+    bottom: 0px;
+    background-color: var(--color-nav-menu);
+    transition: all 0.2s ease-in-out;
+  }
+
+  nav .nav-links li {
+    display: list-item;
+    list-style: none;
+    padding: 15px;
+    margin-right: auto;
+  }
+
+  nav .nav-links a {
+    font-weight: 700;
+    font-size: 19px;
+  }
+
+  nav .nav-overlay {
+    display: block;
+  }
+
+  nav .nav-menu-button {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  nav {
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+
+  nav .nav-title {
+    margin: 36px auto 20px auto;
+    padding: 0px;
+  }
+
+  nav .nav-menu-button {
+    display: block;
+    text-align: inherit;
+  }
+}
+
+/** Footer **/
+body > footer {
+  margin-top: 64px;
+  margin-bottom: 64px;
+  text-align: center;
+  color: var(--color-font);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+body > footer h2 {
+  text-align: center!important;
+}
+
+body > footer a {
+  text-decoration: none;
+  color: var(--color-font);
+  border-bottom: 1px solid transparent;
+  transition: border .3s;
+}
+
+body > footer a:hover {
+  border-color: var(--color-font);
+}
+
+body > footer a,
+body > footer p {
+  font-size: 16px;
+}
+
+body > footer svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--color-font);
+  cursor: pointer;
+}
