@@ -2,9 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # Tests views
-    path('test/', views.test, name='test'),
-    # Default views
     path('', views.index, name='index'),
     path('tag/<slug:slug_tag>', views.tag, name='tag'),
     path('profile/<int:user_id>', views.profile, name='profile'),
