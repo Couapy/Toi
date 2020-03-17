@@ -145,6 +145,17 @@ code {
   margin-top: 20px;
 }
 
+.author-card .name a {
+  color: var(--color-font);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border .3s; 
+}
+
+.author-card .name a:hover {
+  border-color: var(--color-font);
+}
+
 /** Suggestions **/
 .suggestions {
   display: flex;

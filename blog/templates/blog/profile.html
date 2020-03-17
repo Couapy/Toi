@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Profil de {{ user }} | Mon super blog{% endblock %}
+
+{% block 'head' %}
+<!-- SEO meta tags -->
+<meta name="robots" content="noindex, follow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="fr">
+
+<!-- OpenGraph meta tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ post.title }}">
+<meta property="og:site_name" content="Mon blog">
+<meta property="og:url" content="{% url 'profile' user.id %}">
+{% if user.profile.image %}
+<meta property="og:image" content="{{ user.profile.image.url }}">
+{% endif %}
+
+<!-- Twitter meta tags -->
+<meta name="twitter:card" content="app">
+<meta name="twitter:site" content="@twitteraccount">
+<meta name="twitter:description" content="{{ post.description }}">
+<meta name="twitter:app:country" content="fr">
+
+<!-- Style sheets -->
+<link rel="stylesheet" href="{% static 'styles/post.css' %}">
+<link rel="stylesheet" href="{% static 'styles/forms.css' %}">
+{% endblock %}
+
+{% block 'body' %}
+<div style="width: 60%; margin-left: auto; margin-right: auto; color: var(--color-font);">
+    {% if request.user.profile.image %}
+    <img src="{{ user.profile.image.url }}" alt="Image de profil">
+    {% else %}
+    <p>Pas d'image 🤔</p>
+    {% endif %}
+    <h1>{{ user }}</h1>
+    <p>{{ user.profile.bio }}</p>
+</div>
+{% endblock %}

@@ -1,54 +1,48 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block 'title' %}{{ post.title }} | Mon super blog{% endblock %}
+
 {% block 'head' %}
-  <!-- SEO meta tags -->
-  <meta name="description" content="ma super description">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="auteur">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="content-language" content="fr">
+<!-- SEO meta tags -->
+<meta name="description" content="{{ post.description }}">
+<meta name="robots" content="index, follow">
+<meta name="author" content="{{ post.author }}">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="fr">
 
-  <!-- OpenGraph meta tags -->
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="mon super titre">
-  <meta property="og:site_name" content="Mon blog">
-  <meta property="og:url" content="monurl">
-  <meta property="og:image" content="url-illustration">
-  <meta property="article:published_time" content="2020-02-15">
-  <meta property="article:author" content="url-vers-mon-auteur">
+<!-- OpenGraph meta tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ post.title }}">
+<meta property="og:site_name" content="Mon blog">
+<meta property="og:url" content="{% url 'post' post.slug %}">
+<meta property="og:image" content="{{ post.illustration }}">
+<meta property="article:published_time" content="2020-02-15">
+<meta property="article:author" content="{{ post.author }}">
 
-  <!-- Twitter meta tags -->
-  <meta name="twitter:card" content="app">
-  <meta name="twitter:site" content="@twitteraccount">
-  <meta name="twitter:description" content="ma super description">
-  <meta name="twitter:app:name:iphone" content="Mon super blog">
-  <meta name="twitter:app:id:iphone" content="">
-  <meta name="twitter:app:name:ipad" content="Mon super blog">
-  <meta name="twitter:app:id:ipad" content="">
-  <meta name="twitter:app:name:googleplay" content="Mon super blog">
-  <meta name="twitter:app:id:googleplay" content="">
-  <meta name="twitter:app:country" content="fr">
+<!-- Twitter meta tags -->
+<meta name="twitter:card" content="app">
+<meta name="twitter:site" content="@twitteraccount">
+<meta name="twitter:description" content="{{ post.description }}">
+<meta name="twitter:app:country" content="fr">
 
-  <!-- Style sheets -->
-  <link rel="stylesheet" href="{% static 'styles/master.css' %}">
-  <link rel="stylesheet" href="{% static 'styles/theme.css' %}">
-  <link rel="stylesheet" href="{% static 'styles/post.css' %}">
-  <link rel="stylesheet" href="{% static 'styles/forms.css' %}">
-  
-  <!-- Scripts -->
-  <script src="{% static 'scripts/nav.js' %}" defer></script>
-  <script src="{% static 'scripts/theme.js' %}" defer></script>
-  <script src="{% static 'scripts/fakelinks.js' %}" defer></script>
-  <script src="{% static 'scripts/comments.js' %}" defer></script>
+<!-- Style sheets -->
+<link rel="stylesheet" href="{% static 'styles/post.css' %}">
+<link rel="stylesheet" href="{% static 'styles/forms.css' %}">
 
-  <script>
-    var user = {
-      username: '{{ user.username }}',
-      profile: '{{ user.profile.image.url }}',
+<!-- Scripts -->
+<script src="{% static 'scripts/comments.js' %}" defer></script>
+
+<script>
+  var user = {
+    username: '{{ user.username }}',
+    {% if request.user.profile.image %}
+    profile: '{{ user.profile.image.url }}',
+    {% else %}
+    profile: '',
+    {% endif %}
     }
-  </script>
-
+</script>
 {% endblock %}
 
 {% block 'body' %}
@@ -106,9 +100,11 @@
   <footer>
     <!-- Informations sur l'auteur -->
     <div class="author-card">
+      {% if request.user.profile.image %}
       <div class="profile" style="background-image: url({{ post.author.profile.image.url }})"></div>
+      {% endif %}
       <div class="body">
-        <span class="name">{{ post.author }}</span>
+        <span class="name"><a href="{% url 'profile' post.author.id %}">{{ post.author }}</a></span>
         <p>{{ post.author.profile.bio }}</p>
       </div>
     </div>

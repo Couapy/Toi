@@ -1,13 +1,22 @@
-
+{% load static%}
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bienvenue sur mon super Blog</title>
+    <title>{% block 'title' %}Mon super blog{% endblock %}</title>
     <meta name="theme-color" content="#fff">
+
     {% block 'head' %}{% endblock %}
+    
+    <!-- Style sheets -->
+    <link rel="stylesheet" href="{% static 'styles/master.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/theme.css' %}">
+    <!-- Scripts -->
+    <script src="{% static 'scripts/nav.js' %}" defer></script>
+    <script src="{% static 'scripts/theme.js' %}" defer></script>
+    <script src="{% static 'scripts/fakelinks.js' %}" defer></script>
 </head>
 
 <body data-theme="light">
