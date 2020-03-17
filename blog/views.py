@@ -59,11 +59,6 @@ def post(request, slug):
     return render(request, 'blog/post.html', context)
 
 
-def test(request):
-    """This is the view for posts."""
-    return render(request, 'test.html', {})
-
-
 # POST views
 
 
