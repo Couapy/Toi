@@ -1,5 +1,5 @@
 <div class="comment" data-id="1">
-    <img src="{{ comment.author.profile }}" alt="{{ comment.author }}'s profile image" class="profile">
+    <img src="{{ comment.author.profile.image.url }}" alt="{{ comment.author }}'s profile image" class="profile">
     <div class="body">
         <div class="head">
             <span class="author">{{ comment.author }}</span>
@@ -9,7 +9,7 @@
         <div class="content">
             {{ comment.body }}
             <div class="feedback">
-                <a href="#" onclick="like(this)" class="like">
+                <a href="#" class="like{% if request.user in comment.user_liked.all %} liked{% endif %}">
                     <svg class="icon block" viewBox="0 0 12 12" aria-hidden="true">
                         <path
                             d="M11.045,2.011a3.345,3.345,0,0,0-4.792,0c-.075.075-.15.225-.225.3-.075-.074-.15-.224-.225-.3a3.345,3.345,0,0,0-4.792,0,3.345,3.345,0,0,0,0,4.792l5.017,4.718L11.045,6.8A3.484,3.484,0,0,0,11.045,2.011Z">
@@ -17,7 +17,7 @@
                     </svg>
                 </a>
                 <span class="dot"></span>
-                <a href="#" onclick="reply(this)" class="reply">Répondre</a>
+                <a href="#" class="reply">Répondre</a>
             </div>
         </div>
         <div class="replies">

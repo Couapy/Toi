@@ -44,6 +44,18 @@ article header .readtime {
   opacity: 0.8;
 }
 
+article header .author a {
+  color: currentcolor;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 2px solid transparent;
+  transition: border .3s;
+}
+
+article header .author a:hover {
+  border-color: currentcolor;
+}
+
 article header svg {
   width: 1rem;
   height: 1rem;

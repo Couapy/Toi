@@ -1,0 +1,15 @@
+<article>
+    <div class="content{% if post.illustration %} illustrated{% endif %}">
+        {% if post.illustration %}
+        <div class="illustration" style="background-image: url({{ post.illustration }})"></div>
+        {% endif %}
+        <a href="{% url 'post' post.slug %}" class="overlay"></a>
+        <h2>{{ post.title }}</h2>
+        <span class="infos">Par <a href="{% url 'profile' post.author.id %}" class="author">{{ post.author }}</a> {{ post.get_date }}</span>
+        <div class="categories">
+            {% for tag in post.tags.all %}
+            <a href="{% url 'tag' tag %}" class="category">{{ tag }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</article>

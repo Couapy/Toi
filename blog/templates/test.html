@@ -1,9 +1,1 @@
-{% extends 'base.html' %}
-
-{% block 'title' %}
-
-{% endblock %}
-
-{% block 'body %}
-<a href="{% url 'profile' post.author.id %}">Profil de l'auteur</a>
-{% endblock %}
+{% csrf_token %}
