@@ -38,6 +38,7 @@
    * Global vars
    */
   var user = {
+    connected: {{ user.is_authenticated|lower }},
     username: '{{ user.username }}',
     {% if request.user.profile.image %}
     profile: '{{ user.profile.image.url }}',
@@ -124,6 +125,11 @@
     </aside>
     <!-- Commentaires -->
     <aside class="comments">
+      {% if not user.is_authenticated %}
+      <div class="comment noconnected">
+        Vous devez être connecté pour publier un commentaire.
+      </div>
+      {% endif %}
       {% if post.comments %}
         {% for comment in post.comments %}
           {% include 'components/comment.html' %}

@@ -258,6 +258,12 @@ code {
   overflow-y: hidden;
 }
 
+.comment.noconnected {
+  text-decoration: underline;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
 .comment .profile {
   width: 64px;
   height: 64px;
