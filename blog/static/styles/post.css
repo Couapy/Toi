@@ -319,7 +319,7 @@ code {
   margin-top: 10px;
 }
 
-.comment .feedback a.reply {
+.comment .feedback a {
   text-decoration: none;
   text-transform: uppercase;
   color: var(--color-font);
@@ -328,6 +328,7 @@ code {
   transition: border .3s, opacity .3s;
 }
 
+.comment .feedback a:hover,
 .comment .feedback a:hover {
   border-color: var(--color-font);
   opacity: 1;

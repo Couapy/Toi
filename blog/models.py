@@ -30,7 +30,7 @@ class Post(models.Model):
     description = models.TextField()
     body = models.TextField()
     tags = models.ManyToManyField(Tag)
-    posted_date = models.DateTimeField(auto_now=True)
+    posted_date = models.DateTimeField(auto_now_add=True)
     reading_time = models.IntegerField(default=5)
 
     @property
@@ -49,7 +49,12 @@ class Post(models.Model):
 class Comment(models.Model):
     """Comment model."""
 
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+    )
     replyto = models.ForeignKey(
         'self',
         on_delete=models.CASCADE,
@@ -62,7 +67,10 @@ class Comment(models.Model):
         related_name='+'
     )
     body = models.TextField('Commentaire')
-    published_date = models.DateTimeField('Date de publication')
+    published_date = models.DateTimeField(
+        'Date de publication',
+        auto_now_add=True
+    )
     likes = models.IntegerField(default=0)
     user_liked = models.ManyToManyField(User)
 

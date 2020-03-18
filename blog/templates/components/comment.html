@@ -1,4 +1,4 @@
-<div class="comment" data-id="1">
+<div class="comment" data-id="{{ comment.id }}" id="comment{{ comment.id }}">
     <img src="{{ comment.author.profile.image.url }}" alt="{{ comment.author }}'s profile image" class="profile">
     <div class="body">
         <div class="head">
@@ -7,7 +7,7 @@
             <span class="date">{{ comment.published_date }}</span>
         </div>
         <div class="content">
-            {{ comment.body }}
+            <div class="text">{{ comment.body }}</div>
             <div class="feedback">
                 <a href="#" class="like{% if request.user in comment.user_liked.all %} liked{% endif %}">
                     <svg class="icon block" viewBox="0 0 12 12" aria-hidden="true">
@@ -15,9 +15,12 @@
                             d="M11.045,2.011a3.345,3.345,0,0,0-4.792,0c-.075.075-.15.225-.225.3-.075-.074-.15-.224-.225-.3a3.345,3.345,0,0,0-4.792,0,3.345,3.345,0,0,0,0,4.792l5.017,4.718L11.045,6.8A3.484,3.484,0,0,0,11.045,2.011Z">
                         </path>
                     </svg>
+                    <span class="likes">{{ comment.likes }}</span>
                 </a>
                 <span class="dot"></span>
                 <a href="#" class="reply">Répondre</a>
+                <span class="dot"></span>
+                <a href="#" class="edit">Editer</a>
             </div>
         </div>
         <div class="replies">

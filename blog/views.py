@@ -1,8 +1,10 @@
 """This file contains all view for the blog application."""
 from django.shortcuts import render
-from django.http import Http404, JsonResponse, HttpResponse 
+from django.http import Http404, JsonResponse, HttpResponse
 from .models import Post, Tag, Comment
 from django.contrib.auth.models import User
+from django.urls import reverse
+from .forms import PublishCommentForm
 
 # GET views
 
@@ -61,8 +63,7 @@ def post(request, slug):
 
 # POST views
 
-
-def comment_like(request, comment_id):
+def comment_like(request, slug, comment_id):
     """This is the view for comment like system."""
 
     response = {
@@ -79,16 +80,62 @@ def comment_like(request, comment_id):
     if request.user in comment.user_liked.all():
         comment.likes -= 1
         comment.user_liked.remove(request.user)
+        comment.save()
     else:
         comment.likes += 1
         comment.user_liked.add(request.user)
+        comment.save()
 
     return JsonResponse(response)
 
 
-def comment_reply(request, comment_id):
-    """This is the view for comment reply system."""
+def comment_edit(request, slug, comment_id):
+    """View for reply to a comment."""
+    pass
+
+
+def comment_publish(request, slug):
+    """View for publish a comment."""
+
+    if not request.user.is_authenticated:
+        return JsonResponse({'success': False, 'error': 'You must being login in.'})
+
+    # Trouver le post
+    try:
+        post = Post.objects.get(slug=slug)
+    except Post.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Post not found.'})
+
+    # Ecrire et sauvegarder le post
+
     response = {
         'success': True,
+        'error': '',
+        'redirect_link': ''
     }
-    return JsonResponse(response)
+
+    form = PublishCommentForm(request.POST)
+
+    if form.is_valid():
+        body = form.cleaned_data['comment']
+
+        if form.cleaned_data['replyto'] == 0:
+            replyto = None
+        else:
+            try:
+                replyto = Comment.objects.get(id=form.cleaned_data['replyto'])
+            except Comment.DoesNotExist:
+                return JsonResponse({'success': False, 'error': 'Comment not found.'})
+
+        comment = Comment.objects.create(
+            post=post,
+            replyto=replyto,
+            author=request.user,
+            body=body
+        )
+
+        response['redirect_link'] = reverse('post', args=(post.slug,)) + "#comment" + str(comment.id)
+
+        return JsonResponse(response)
+    else:
+        return JsonResponse({'success': False, 'error': form.errors})
