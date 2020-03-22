@@ -26,24 +26,26 @@
 
 <!-- Style sheets -->
 <link rel="stylesheet" href="{% static 'styles/blog.css' %}">
+<link rel="stylesheet" href="{% static 'styles/profile.css' %}">
 {% endblock %}
 
 {% block 'body' %}
-<div style="width: 60%; margin-left: auto; margin-right: auto; color: var(--color-font);">
+<div class="profile">
 
     <!-- Image profile -->
     {% if request.user.profile.image %}
     <img src="{{ user.profile.image.url }}" alt="Image de profil">
     {% else %}
-    <p>Pas d'image 😯</p>
+    <p>Pas d'image.</p>
     {% endif %}
 
     <!-- Username -->
     <h1>{{ user }}</h1>
-    {{ user.profile.bio }}
 
-    <!-- User posts -->
-    <h2>Mes posts</h2>
+    <!-- Biography -->
+    <div class="bio">
+        {{ user.profile.bio }}
+    </div>
 
 </div>
 
