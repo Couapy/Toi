@@ -79,10 +79,22 @@ WSGI_APPLICATION = 'Toi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# If you want to configure the connection a mysql server, please follow below :
+
+# # database.conf
+# [client]
+# database = NAME
+# user = USER
+# password = PASSWORD
+# default-character-set = utf8
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'test.db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'OPTIONS': {
+        #     'read_default_file': os.path.join(BASE_DIR, 'database.conf'),
+        # },
     }
 }
 

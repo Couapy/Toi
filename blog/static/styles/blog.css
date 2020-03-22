@@ -137,4 +137,7 @@ article .illustrated {
 }
 @media screen and (max-width: 425px) {
   /** Mobile **/
+  main {
+    padding: 0;
+  }
 }
