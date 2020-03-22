@@ -78,7 +78,8 @@ article .illustration {
   border-radius: 25px;
 }
 
-article .infos a{
+article .infos a {
+  position: relative;
   text-decoration: none;
   color: currentcolor;
   font-weight: 700;
@@ -96,12 +97,9 @@ article .categories {
 }
 
 article .category {
-  
   padding: 4px 10px;
-
   text-decoration: none;
   color: currentcolor;
-
   border-radius: 20px;
   font-size: 10px;
   font-weight: 700;

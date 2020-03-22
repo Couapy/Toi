@@ -44,6 +44,18 @@ article header .readtime {
   opacity: 0.8;
 }
 
+article header .author a {
+  color: currentcolor;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 2px solid transparent;
+  transition: border .3s;
+}
+
+article header .author a:hover {
+  border-color: currentcolor;
+}
+
 article header svg {
   width: 1rem;
   height: 1rem;
@@ -145,6 +157,17 @@ code {
   margin-top: 20px;
 }
 
+.author-card .name a {
+  color: var(--color-font);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border .3s; 
+}
+
+.author-card .name a:hover {
+  border-color: var(--color-font);
+}
+
 /** Suggestions **/
 .suggestions {
   display: flex;
@@ -188,12 +211,14 @@ code {
   text-align: right;
 }
 
-.suggestions section.previous {
-  border-radius: 5px 0 0 0;
+.suggestions section.previous,
+.suggestions section:first-child.next {
+  border-top-left-radius: 5px;
 }
 
-.suggestions section.next {
-  border-radius: 0 5px 0 0;
+.suggestions section.next,
+.suggestions section:last-child.previous {
+  border-top-right-radius: 5px;
 }
 
 /** Comments **/
@@ -233,6 +258,12 @@ code {
 .comment.editor textarea {
   resize: none;
   overflow-y: hidden;
+}
+
+.comment.noconnected {
+  text-decoration: underline;
+  font-weight: 400;
+  opacity: 0.8;
 }
 
 .comment .profile {
@@ -290,7 +321,7 @@ code {
   margin-top: 10px;
 }
 
-.comment .feedback a.reply {
+.comment .feedback a {
   text-decoration: none;
   text-transform: uppercase;
   color: var(--color-font);
@@ -299,6 +330,7 @@ code {
   transition: border .3s, opacity .3s;
 }
 
+.comment .feedback a:hover,
 .comment .feedback a:hover {
   border-color: var(--color-font);
   opacity: 1;
