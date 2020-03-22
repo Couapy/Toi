@@ -1,0 +1,3 @@
+{% for tag in tags %}
+<li><a href="{% url 'tag' tag %}">{{ tag }}</a></li>
+{% endfor %}
