@@ -4,7 +4,7 @@ from django.http import Http404, JsonResponse, HttpResponse
 from .models import Post, Tag, Comment
 from django.contrib.auth.models import User
 from django.urls import reverse
-from .forms import PublishCommentForm
+from .forms import PublishCommentForm, EditCommentForm
 
 # GET views
 
@@ -91,22 +91,73 @@ def comment_like(request, slug, comment_id):
 
 def comment_edit(request, slug, comment_id):
     """View for reply to a comment."""
-    pass
+    if not request.user.is_authenticated:
+        return JsonResponse({'success': False, 'error': 'You must being login in.'})
+
+    try:
+        comment = Comment.objects.get(id=comment_id)
+    except Comment.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Comment not found.'})
+
+    if request.user != comment.author:
+        return JsonResponse({'success': False, 'error': 'You cannot do this operation for others.'})
+
+    form = EditCommentForm(request.POST)
+
+    if form.is_valid():
+        body = form.cleaned_data['comment']
+
+        comment.modified = True
+        comment.body = body
+        comment.save()
+
+        return JsonResponse({
+            'success': True,
+            'error': {},
+            'redirect_link': reverse(
+                'post',
+                args=(slug,)
+            ) + "#comment" + str(comment.id)
+        })
+    else:
+        return JsonResponse({'success': False, 'error': form.errors})
+
+
+def comment_delete(request, slug, comment_id):
+    """This is the  view for deleting a comment."""
+    """View for reply to a comment."""
+    if not request.user.is_authenticated:
+        return JsonResponse({'success': False, 'error': 'You must being login in.'})
+
+    try:
+        comment = Comment.objects.get(id=comment_id)
+    except Comment.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Comment not found.'})
+
+    if request.user != comment.author:
+        return JsonResponse({'success': False, 'error': 'You cannot do this operation for others.'})
+
+    comment.delete()
+
+    return JsonResponse({
+        'success': True,
+        'error': {},
+        'redirect_link': reverse(
+            'post',
+            args=(slug,)
+        ) + "#comment" + str(comment.id)
+    })
 
 
 def comment_publish(request, slug):
     """View for publish a comment."""
-
     if not request.user.is_authenticated:
         return JsonResponse({'success': False, 'error': 'You must being login in.'})
 
-    # Trouver le post
     try:
         post = Post.objects.get(slug=slug)
     except Post.DoesNotExist:
         return JsonResponse({'success': False, 'error': 'Post not found.'})
-
-    # Ecrire et sauvegarder le post
 
     response = {
         'success': True,
@@ -134,7 +185,8 @@ def comment_publish(request, slug):
             body=body
         )
 
-        response['redirect_link'] = reverse('post', args=(post.slug,)) + "#comment" + str(comment.id)
+        response['redirect_link'] = reverse('post', args=(
+            slug,)) + "#comment" + str(comment.id)
 
         return JsonResponse(response)
     else:

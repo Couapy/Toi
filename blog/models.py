@@ -71,6 +71,7 @@ class Comment(models.Model):
         'Date de publication',
         auto_now_add=True
     )
+    modified = models.BooleanField(default=False)
     likes = models.IntegerField(default=0)
     user_liked = models.ManyToManyField(User)
 

@@ -133,7 +133,10 @@ export class Editor {
             function (e) {
                 let res = JSON.parse(e)
                 if (res.success) {
-                    document.location.href = res.redirect_link
+                    if (typeof res.redirect_link !== 'undefined') {
+                        document.location.href = res.redirect_link
+                    }
+                    document.location.reload()
                 }
                 else {
                     console.log(res.error);
@@ -222,6 +225,7 @@ export function reply(event) {
     // Create new editor
     let replies = comment.querySelector('.replies')
     let form = new Editor({
+        action: 'comment/publish/',
         reply_id: comment.dataset.id
     })
     let DOM_form = form.toDOM
@@ -274,12 +278,35 @@ export function edit(event) {
     textarea.focus()
 }
 
+export function del(event) {
+    // Select the comment
+    let comment = event.currentTarget;
+    while (!comment.classList.contains('comment')) {
+        comment = comment.parentNode
+    }
+
+    if (confirm("Êtes-vous sûr de vouloir supprimer le commentaire ?")) {
+        request(
+            'comment/' + comment.dataset.id + '/delete/',
+            new FormData(),
+            function () {
+                document.location.reload()
+            },
+            function (e) {
+                console.log(e);
+            }
+        )
+    }
+}
+
 function scrollTo(element) {
-    window.scroll({
-        left: 0,
-        top: element.offsetTop - 200,
-        behavior: 'smooth',
-    })
+    if (element) {
+        window.scroll({
+            left: 0,
+            top: element.offsetTop - 200,
+            behavior: 'smooth',
+        })
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {

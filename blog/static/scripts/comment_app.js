@@ -1,4 +1,4 @@
-import { Editor, like, reply, edit } from './modules/comment.js'
+import { Editor, like, reply, edit, del } from './modules/comment.js'
 import { request } from './modules/ajax.js'
 
 if (user.connected) {
@@ -25,6 +25,9 @@ if (user.connected) {
     document.querySelectorAll('.comment .edit').forEach(link => {
         link.addEventListener('click', edit)
     })
+    document.querySelectorAll('.comment .delete').forEach(link => {
+        link.addEventListener('click', del)
+    })
 }
 else {
     /**
@@ -36,11 +39,6 @@ else {
         })
     })
     document.querySelectorAll('.comment .reply').forEach(link => {
-        link.addEventListener('click', () => {
-            alert('Connectez-vous pour utiliser cette fonctionnalité.')
-        })
-    })
-    document.querySelectorAll('.comment .edit').forEach(link => {
         link.addEventListener('click', () => {
             alert('Connectez-vous pour utiliser cette fonctionnalité.')
         })

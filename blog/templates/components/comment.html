@@ -5,6 +5,10 @@
             <span class="author">{{ comment.author }}</span>
             <span class="dot"></span>
             <span class="date">{{ comment.published_date }}</span>
+            {% if comment.modified %}
+            <span class="dot"></span>
+            <span class="date">(modifié)</span>
+            {% endif %}
         </div>
         <div class="content">
             <div class="text">{{ comment.body }}</div>
@@ -19,8 +23,12 @@
                 </a>
                 <span class="dot"></span>
                 <a href="#" class="reply">Répondre</a>
+                {% if request.user == comment.author %}
                 <span class="dot"></span>
                 <a href="#" class="edit">Editer</a>
+                <span class="dot"></span>
+                <a href="#" class="delete">Supprimer</a>
+                {% endif %}
             </div>
         </div>
         <div class="replies">
