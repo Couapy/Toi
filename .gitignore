@@ -1,3 +1,7 @@
+# Static files
+Toi/static/*
+Toi/media/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
