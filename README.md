@@ -1,6 +1,6 @@
 # Toi blog
 
-Toi blog is a web app allows you to create easily a blog.
+Toi blog is a web app which allows you to create easily a blog.
 
 The system provide:
 
