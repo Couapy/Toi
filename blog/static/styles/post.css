@@ -211,12 +211,14 @@ code {
   text-align: right;
 }
 
-.suggestions section.previous {
-  border-radius: 5px 0 0 0;
+.suggestions section.previous,
+.suggestions section:first-child.next {
+  border-top-left-radius: 5px;
 }
 
-.suggestions section.next {
-  border-radius: 0 5px 0 0;
+.suggestions section.next,
+.suggestions section:last-child.previous {
+  border-top-right-radius: 5px;
 }
 
 /** Comments **/

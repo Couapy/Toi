@@ -114,14 +114,18 @@
     </div>
     <!-- Post précédant et suivant -->
     <aside class="suggestions">
+      {% if previous %}
       <section class="previous">
         <span class="info">Article précédent</span>
         <a rel="prev" href="{% url 'post' previous.slug %}">{{ previous.title }}</a>
       </section>
+      {% endif %}
+      {% if next %}
       <section class="next">
         <span class="info">Article suivant</span>
         <a rel="next" href="{% url 'post' next.slug %}">{{ next.title }}</a>
       </section>
+      {% endif %}
     </aside>
     <!-- Commentaires -->
     <aside class="comments">

@@ -55,9 +55,20 @@ def post(request, slug):
         raise Http404("Le post que vous cherchez n'existe pas.")
     context = {
         'post': post,
-        'previous': post,
-        'next': post,
+        'previous': None,
+        'next': None,
     }
+
+    try:
+        context['previous'] = post.get_previous_by_posted_date()
+    except Post.DoesNotExist:
+        pass
+
+    try:
+        context['next'] = post.get_next_by_posted_date()
+    except Post.DoesNotExist:
+        pass
+
     return render(request, 'blog/post.html', context)
 
 
