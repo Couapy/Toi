@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'nho_sawy@5=t@b2kqtfbc%3o+u$bv=hzpv+_1*%jl@xt@am+eq'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # My apps
+    'Toi',
     'blog',
 ]
 
@@ -80,13 +81,6 @@ WSGI_APPLICATION = 'Toi.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 # If you want to configure the connection a mysql server, please follow below :
-
-# # database.conf
-# [client]
-# database = NAME
-# user = USER
-# password = PASSWORD
-# default-character-set = utf8
 
 DATABASES = {
     'default': {
