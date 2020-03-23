@@ -1,5 +1,10 @@
+import uuid
+import os
 from datetime import datetime
+from django.core.exceptions import ValidationError
 
+
+# My blog functions
 
 def get_date(time=False):
     """
@@ -48,3 +53,23 @@ def get_date(time=False):
     if day_diff < 730:
         return "Il y a une année"
     return "Il y a " + str(int(day_diff / 365)) + " années"
+
+
+def illustration_directory_path(request, file):
+    """Return the localstorage path for post illustration image."""
+    return directory_path('illustration', file)
+
+
+def profile_directory_path(request, file):
+    """Return the localstorage path for user profile image."""
+    return directory_path('profile', file)
+
+
+def directory_path(directory, file):
+    """This function generate a random name to save files."""
+    try:
+        file_name, file_extension = os.path.splitext(file)
+    except Exception:
+           file_extension = ''
+    new_file_name = str(uuid.uuid4()) + file_extension
+    return '{}/{}'.format(directory, new_file_name)
