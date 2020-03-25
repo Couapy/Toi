@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     # My apps
     'Toi',
     'blog',
+
+    # Enabling OAuth connections
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +72,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # Social Django templates
+                "social_django.context_processors.backends",
+                "social_django.context_processors.login_redirect",
             ],
         },
     },
@@ -132,6 +138,40 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'Toi/static/')
 
+
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'Toi/media/')
+
+
+# OAuth authentication
+# https://python-social-auth-docs.readthedocs.io/en/latest/backends/google.html
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '796492076680-1kvnmo5utajqmra4141g34kesi77blp1.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'G9GpLG-FGo_v261Y7oAW6pyg'
+
+AUTHENTICATION_BACKENDS = (
+    # 'social_core.backends.open_id.OpenIdAuth',
+    # 'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    # 'social_core.backends.google.GoogleOAuth',
+    # 'social_core.backends.twitter.TwitterOAuth',
+    # 'social_core.backends.yahoo.YahooOpenId',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_REDIRECT_URL = "/"
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+AUTH_PROFILE_MODULE = 'blog.OAuthProfile'
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.social_auth.associate_by_email',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)

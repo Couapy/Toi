@@ -46,7 +46,10 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         """Control the save."""
-        this = Post.objects.get(id=self.id)
+        if self.id is None:
+            this = self
+        else:
+            this = Post.objects.get(id=self.id)
 
         try:
             if this.illustration != self.illustration:

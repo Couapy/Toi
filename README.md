@@ -14,8 +14,9 @@ The system provide:
 * [x] Vue post
 * [x] Vue user profile
 * [ ] Admin blog
-  * [ ] Edit posts (editor WYSIWYG)
+  * [x] Edit posts (editor WYSIWYG)
   * [ ] Setup all forms to manage the blog
+* [ ] OAuth connection
 
 ## Installation
 

@@ -18,8 +18,10 @@ class PostAdmin(admin.ModelAdmin):
         query = super(PostAdmin, self).get_queryset(request)
         return query.filter(author=request.user)
 
+    def save_model(self, request, instance, form, change):
+        instance.author = request.user
+        return super().save_model(request, instance, form, change)
+
 
 # Register Models
 admin.site.register(Tag)
-admin.site.register(Comment)
-admin.site.register(Profile)
