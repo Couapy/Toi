@@ -1,5 +1,5 @@
 <div class="comment" data-id="{{ comment.id }}" id="comment{{ comment.id }}">
-    <img src="{{ comment.author.profile.image.url }}" alt="{{ comment.author }}'s profile image" class="profile">
+    <img src="{{ comment.author.profile.get_image }}" alt="{{ comment.author }}'s profile image" class="profile">
     <div class="body">
         <div class="head">
             <span class="author">{{ comment.author }}</span>

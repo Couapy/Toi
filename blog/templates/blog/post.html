@@ -39,11 +39,9 @@
    */
   var user = {
     connected: {{ user.is_authenticated|lower }},
+    {% if user.is_authenticated %}
     username: '{{ user.username }}',
-    {% if request.user.profile.image %}
-    profile: '{{ user.profile.image.url }}',
-    {% else %}
-    profile: '',
+    profile: '{{ user.profile.get_image }}',
     {% endif %}
   }
 </script>
@@ -98,15 +96,13 @@
   </header>
 
   <div class="article-body">
-    {{ post.body }}
+    {{ post.body|safe }}
   </div>
 
   <footer>
     <!-- Informations sur l'auteur -->
     <div class="author-card">
-      {% if request.user.profile.image %}
-      <div class="profile" style="background-image: url({{ post.author.profile.image.url }})"></div>
-      {% endif %}
+      <div class="profile" style="background-image: url({{ post.author.profile.get_image }})"></div>
       <div class="body">
         <span class="name"><a href="{% url 'profile' post.author.id %}">{{ post.author }}</a></span>
         <p>{{ post.author.profile.bio }}</p>

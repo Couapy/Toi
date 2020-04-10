@@ -44,9 +44,14 @@ INSTALLED_APPS = [
     # My apps
     'Toi',
     'blog',
+    'accounts',
 
     # Enabling OAuth connections
     'social_django',
+
+    # Enabling CKEditor
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -162,7 +167,7 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_REDIRECT_URL = "/"
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
-AUTH_PROFILE_MODULE = 'blog.OAuthProfile'
+AUTH_PROFILE_MODULE = 'accounts.Profile'
 
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
@@ -175,3 +180,88 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
 )
+
+
+# CKEditor widgets
+CKEDITOR_UPLOAD_PATH = MEDIA_ROOT + 'uploads/'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+                'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ]
+    },
+    'post': {
+        'toolbar': 'custom',
+        'toolbar_custom': [
+            {
+                'name': 'document',
+                'items': ['Source']
+            },
+            {
+                'name': 'clipboard',
+                'items': [
+                    'Undo',
+                    'Redo',
+                    '-',
+                    'Paste',
+                    'PasteText',
+                    'PasteFromWord'
+                ]
+            },
+            {
+                'name': 'editing',
+                'items': ['Scayt']
+            },
+            {
+                'name': 'basicstyles',
+                'items': ['Bold', 'Italic', 'Underline', 'Strike']
+            },
+            {
+                'name': 'paragraph',
+                'items': [
+                    'BulletedList',
+                    'Blockquote',
+                    'CreateDiv',
+                    '-',
+                    'JustifyLeft',
+                    'JustifyCenter',
+                    'JustifyRight',
+                    'JustifyBlock'
+                ]
+            },
+            {
+                'name': 'links',
+                'items': ['Link', 'Unlink', 'Anchor']
+            },
+            '/',
+            {
+                'name': 'insert',
+                'items': [
+                    'Image',
+                    'Table',
+                    'HorizontalRule',
+                    'Smiley',
+                    'PageBreak'
+                ]
+            },
+            {
+                'name': 'styles',
+                'items': ['Styles', 'Format']
+            },
+            {
+                'name': 'colors',
+                'items': ['TextColor', 'BGColor']
+            },
+            {
+                'name': 'tools',
+                'items': ['Maximize', 'ShowBlocks']
+            }
+        ],
+        'scayt_autoStartup': True,
+    }
+}

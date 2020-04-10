@@ -11,7 +11,7 @@
 
 <!-- OpenGraph meta tags -->
 <meta property="og:type" content="article">
-<meta property="og:title" content="{{ post.title }}">
+<meta property="og:title" content="">
 <meta property="og:site_name" content="Mon blog">
 <meta property="og:url" content="{% url 'profile' user.id %}">
 {% if user.profile.image %}
@@ -21,7 +21,7 @@
 <!-- Twitter meta tags -->
 <meta name="twitter:card" content="app">
 <meta name="twitter:site" content="@twitteraccount">
-<meta name="twitter:description" content="{{ post.description }}">
+<meta name="twitter:description" content="">
 <meta name="twitter:app:country" content="fr">
 
 <!-- Style sheets -->
@@ -33,11 +33,7 @@
 <div class="profile">
 
     <!-- Image profile -->
-    {% if request.user.profile.image %}
-    <img src="{{ user.profile.image.url }}" alt="Image de profil">
-    {% else %}
-    <p>Pas d'image.</p>
-    {% endif %}
+    <img src="{{ user.profile.get_image }}" alt="Image de profil">
 
     <!-- Username -->
     <h1>{{ user }}</h1>

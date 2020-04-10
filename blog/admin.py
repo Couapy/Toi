@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tag, Post, Comment, Profile
+from .models import Tag, Post
 
 
 # Site header

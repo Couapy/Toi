@@ -22,6 +22,12 @@ The system provide:
 
 The following instructions are here to help you to setup Toi.
 
+Please make sure `Django`, `django_ckeditor` and `social-auth-app-django` packages are installed.
+
+Even if they are not installed please run :
+
+> pip3 install Django django_ckeditor social-auth-app-django
+
 * Edit *settings.py*
   * Set debug to `False`
   * Configure the database

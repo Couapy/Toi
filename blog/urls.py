@@ -14,7 +14,8 @@ urlpatterns = [
          views.comment_edit, name="comment.edit"),
     path('<slug:slug>/comment/<int:comment_id>/delete/',
          views.comment_delete, name="comment.delete"),
-    path('<slug:slug>/comment/publish/', views.comment_publish, name="comment.publish"),
+    path('<slug:slug>/comment/publish/',
+         views.comment_publish, name="comment.publish"),
     # Post
     path('<slug:slug>/', views.post, name='post'),
 ]

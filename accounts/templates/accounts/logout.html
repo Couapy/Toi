@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+
+{% block 'body' %}
+    <h2>Vous avez bien été déconnecté</h2>
+    <p>Si vous souhaiter continuer votre visite, <a href="{% url 'blog:index' %}">cliquez ici</a>.</p>
+{% endblock %}

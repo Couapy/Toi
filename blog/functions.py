@@ -1,10 +1,10 @@
 import uuid
 import os
 from datetime import datetime
-from django.core.exceptions import ValidationError
 
 
 # My blog functions
+
 
 def get_date(time=False):
     """
