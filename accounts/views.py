@@ -16,7 +16,7 @@ def account(request):
 
 def login(request):
     """This is the view for login."""
-    return render(request, 'accounts/login.html', {})
+    return render(request, 'account/login.html', {})
     if request.method is 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -28,8 +28,13 @@ def login(request):
             # Return an 'invalid login' error message.
             pass
     else:
-        return render(request, 'accounts/login.html', {})
+        return render(request, 'account/login.html', {})
 
+
+def new(request):
+    """This view is only for young users."""
+
+    return render(request, 'account/')
 
 @login_required
 def logout(request):
@@ -43,7 +48,7 @@ def profile(request):
     """This is the user profile."""
     return render(
         request,
-        'accounts/profile.html',
+        'account/profile.html',
         {
             'user': request.user
         }

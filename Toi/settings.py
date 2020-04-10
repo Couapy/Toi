@@ -181,6 +181,22 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
 )
 
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/account/profile/'
+Used to redirect the user once the auth process ended successfully. The value of ?next = /foo is used if it was present
+
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/account/new/'
+Used to redirect new registered users, will be used in place of SOCIAL_AUTH_LOGIN_REDIRECT_URL if defined. Note that ?next = /foo is appended if present,
+if you want new users to go to next, you’ll need to do it yourself.
+
+SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/new-association-redirect-url/'
+Like SOCIAL_AUTH_NEW_USER_REDIRECT_URL but for new associated accounts(user is already logged in). Used in place of SOCIAL_AUTH_LOGIN_REDIRECT_URL
+
+SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_INACTIVE_USER_URL = '/inactive-user/'
+Inactive users can be redirected to this URL when trying to authenticate.
+Successful URLs will default to SOCIAL_AUTH_LOGIN_URL while error URLs will fallback to SOCIAL_AUTH_LOGIN_ERROR_URL.
+
 
 # CKEditor widgets
 CKEDITOR_UPLOAD_PATH = MEDIA_ROOT + 'uploads/'
