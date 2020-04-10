@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from ckeditor.configs import DEFAULT_CONFIG
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -182,24 +183,26 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/account/profile/'
-Used to redirect the user once the auth process ended successfully. The value of ?next = /foo is used if it was present
+# Used to redirect the user once the auth process ended successfully. The value of ?next = /foo is used if it was present
 
 SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/account/new/'
-Used to redirect new registered users, will be used in place of SOCIAL_AUTH_LOGIN_REDIRECT_URL if defined. Note that ?next = /foo is appended if present,
-if you want new users to go to next, you’ll need to do it yourself.
+# Used to redirect new registered users, will be used in place of SOCIAL_AUTH_LOGIN_REDIRECT_URL if defined. Note that ?next = /foo is appended if present,
+# if you want new users to go to next, you’ll need to do it yourself.
 
 SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/new-association-redirect-url/'
-Like SOCIAL_AUTH_NEW_USER_REDIRECT_URL but for new associated accounts(user is already logged in). Used in place of SOCIAL_AUTH_LOGIN_REDIRECT_URL
+# Like SOCIAL_AUTH_NEW_USER_REDIRECT_URL but for new associated accounts(user is already logged in). Used in place of SOCIAL_AUTH_LOGIN_REDIRECT_URL
 
 SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/'
 
-SOCIAL_AUTH_INACTIVE_USER_URL = '/inactive-user/'
-Inactive users can be redirected to this URL when trying to authenticate.
-Successful URLs will default to SOCIAL_AUTH_LOGIN_URL while error URLs will fallback to SOCIAL_AUTH_LOGIN_ERROR_URL.
 
+# CKEditor configuration
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_JQUERY_URL = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+CKEDITOR_UPLOAD_SLUGIFY_FILENAME = False
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_BROWSE_SHOW_DIRS = True
 
-# CKEditor widgets
-CKEDITOR_UPLOAD_PATH = MEDIA_ROOT + 'uploads/'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
@@ -259,9 +262,9 @@ CKEDITOR_CONFIGS = {
                 'name': 'insert',
                 'items': [
                     'Image',
+                    'CodeSnippet',
                     'Table',
                     'HorizontalRule',
-                    'Smiley',
                     'PageBreak'
                 ]
             },
@@ -279,5 +282,16 @@ CKEDITOR_CONFIGS = {
             }
         ],
         'scayt_autoStartup': True,
-    }
+        'scayt_sLang': 'fr_FR',
+        'extraPlugins': ','.join([
+            'uploadimage',
+            'uploadwidget',
+            'image2',
+            "codesnippet"
+        ]),
+        "removePlugins": ",".join([
+            "image"
+        ]),
+        'toolbarCanCollapse': True,
+    },
 }

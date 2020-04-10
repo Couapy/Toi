@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .functions import get_date, illustration_directory_path
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Blog models
 
@@ -27,7 +27,7 @@ class Post(models.Model):
         null=True
     )
     description = models.TextField()
-    body = RichTextField(config_name="post")
+    body = RichTextUploadingField(config_name="post")
     tags = models.ManyToManyField(Tag)
     posted_date = models.DateTimeField(auto_now_add=True)
     reading_time = models.IntegerField(default=5)
