@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.urls import reverse
+from .forms import UserProfileForm, UserForm
 
 
 # Create your views here.
@@ -31,11 +32,6 @@ def login(request):
         return render(request, 'account/login.html', {})
 
 
-def new(request):
-    """This view is only for young users."""
-
-    return render(request, 'account/')
-
 @login_required
 def logout(request):
     """This is the view for logout."""
@@ -46,10 +42,43 @@ def logout(request):
 @login_required
 def profile(request):
     """This is the user profile."""
+
+    POST = request.POST or None
+    user = request.user
+    profile = user.profile
+
+    profileform = UserProfileForm(
+        instance=profile,
+        label_suffix=''
+    )
+    userform = UserForm(
+        instance=user,
+        label_suffix=''
+    )
+
+    if request.method == 'POST':
+        if 'profileform' in POST:
+            profileform = UserProfileForm(
+                data=POST,
+                instance=profile,
+                label_suffix=''
+            )
+            if profileform.is_valid():
+                profile = profileform.save()
+        if 'userform' in POST:
+            userform = UserForm(
+                data=POST,
+                instance=user,
+                label_suffix=''
+            )
+            if userform.is_valid():
+                user = userform.save()
+
     return render(
         request,
         'account/profile.html',
         {
-            'user': request.user
+            'profileform': profileform,
+            'userform': userform,
         }
     )

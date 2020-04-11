@@ -5,9 +5,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from .functions import profile_directory_path
 from PIL import Image
-
-
-# Create your models here.
+from ckeditor.fields import RichTextField
 
 
 class Profile(models.Model):
@@ -15,10 +13,10 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    bio = models.TextField(max_length=500, blank=True)
+    bio = RichTextField(max_length=500, blank=True)
     image = models.ImageField(
         upload_to=profile_directory_path,
-        blank=True
+        blank=True,
     )
 
     def get_image(self):

@@ -4,4 +4,4 @@ from .models import Profile
 
 # Register models
 
-admin.site.register(Profile)
+# admin.site.register(Profile)
