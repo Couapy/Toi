@@ -13,12 +13,23 @@ label {
 }
 
 input[type="text"],
-input[type="email"] {
+input[type="email"],
+input[type="file"],
+input[type="submit"] {
     --border: 1px solid #d1d1d1;
 
     padding: 8px 10px;
     width: 100%;
     border: var(--border);
+}
+
+input[type="submit"] {
+    width: auto;
+    transition: border .3s;
+}
+
+input[type="submit"]:hover {
+    border-color: #afafaf;
 }
 
 .helptext {

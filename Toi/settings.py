@@ -63,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
 ]
 
 ROOT_URLCONF = 'Toi.urls'
@@ -183,15 +184,7 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/account/profile/'
-# Used to redirect the user once the auth process ended successfully. The value of ?next = /foo is used if it was present
-
-SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/account/new/'
-# Used to redirect new registered users, will be used in place of SOCIAL_AUTH_LOGIN_REDIRECT_URL if defined. Note that ?next = /foo is appended if present,
-# if you want new users to go to next, you’ll need to do it yourself.
-
-SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/new-association-redirect-url/'
-# Like SOCIAL_AUTH_NEW_USER_REDIRECT_URL but for new associated accounts(user is already logged in). Used in place of SOCIAL_AUTH_LOGIN_REDIRECT_URL
-
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/account/profile/'
 SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/'
 
 
@@ -203,16 +196,44 @@ CKEDITOR_UPLOAD_SLUGIFY_FILENAME = False
 CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_BROWSE_SHOW_DIRS = True
 
+BASIC_TOOLBAR = [
+    {
+        'name': 'clipboard',
+        'items': [
+            'Undo',
+            'Redo'
+        ]
+    },
+    {
+        'name': 'basicstyles',
+        'items': [
+            'Bold',
+            'Italic',
+            'Underline',
+            'Strike',
+            'RemoveFormat'
+        ]
+    },
+    {
+        'name': 'paragraph',
+        'items': [
+            'Blockquote'
+        ]
+    },
+    {
+        'name': 'links',
+        'items': [
+            'Link',
+            'Unlink'
+        ]
+    },
+]
+
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'Custom',
-        'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
-                'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Link', 'Unlink'],
-            ['RemoveFormat', 'Source']
-        ]
+        'toolbar': 'Basic',
+        'toolbar_Basic': BASIC_TOOLBAR,
+        'width': '100%',
     },
     'post': {
         'toolbar': 'custom',
@@ -293,5 +314,6 @@ CKEDITOR_CONFIGS = {
             "image"
         ]),
         'toolbarCanCollapse': True,
+        'language': 'fr',
     },
 }

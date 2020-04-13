@@ -41,7 +41,7 @@ def get_date(time=False):
         if second_diff < 7200:
             return "Il y a une heure"
         if second_diff < 86400:
-            return "Il y a " + str(int(second_diff / 3600)) + " houres"
+            return "Il y a " + str(int(second_diff / 3600)) + " heures"
     if day_diff == 1:
         return "Hier"
     if day_diff < 7:

@@ -2,5 +2,5 @@
     "python.linting.pylintEnabled": false,
     "python.linting.pylamaEnabled": true,
     "python.linting.enabled": true,
-    "debug.node.autoAttach": "on"
+    "debug.node.autoAttach": "off"
 }

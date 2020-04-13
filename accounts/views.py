@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.urls import reverse
 from .forms import UserProfileForm, UserForm
+from .models import Profile
 
 
 # Create your views here.
@@ -59,7 +60,8 @@ def profile(request):
     if request.method == 'POST':
         if 'profileform' in POST:
             profileform = UserProfileForm(
-                data=POST,
+                data=request.POST,
+                files=request.FILES,
                 instance=profile,
                 label_suffix=''
             )
@@ -67,12 +69,13 @@ def profile(request):
                 profile = profileform.save()
         if 'userform' in POST:
             userform = UserForm(
-                data=POST,
+                data=request.POST,
                 instance=user,
                 label_suffix=''
             )
             if userform.is_valid():
                 user = userform.save()
+        return HttpResponseRedirect(reverse('profile'))
 
     return render(
         request,
