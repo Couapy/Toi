@@ -21,6 +21,26 @@
                     </svg>
                 </a>
             </li>
+            <li class="user-actions">
+                <a href="#">
+                    <span class="username">{{ user.username }}</span>
+                    {% if user.is_authenticated %}
+                    <img src="{{ user.profile.image.url }}" alt="User profile">
+                    {% else %}
+                    <img src="/media/faceless.svg" alt="User profile">
+                    {% endif %}
+                </a>
+                {% if user.is_authenticated %}
+                <ul>
+                    <li><a href="{% url 'profile' %}">Mon profil</a></li>
+                    <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
+                </ul>
+                {% else %}
+                <ul>
+                    <li><a href="{% url 'social:begin' 'google-oauth2' %}">Se connecter</a></li>
+                </ul>
+                {% endif %}
+            </li>
         </ul>
     </div>
     <div class="nav-overlay"></div>

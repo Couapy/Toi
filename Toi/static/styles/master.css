@@ -134,6 +134,46 @@ nav .search-icon svg {
   fill: var(--color-font);
 }
 
+nav .nav-links .user-actions {
+  position: relative;
+}
+
+nav .nav-links .user-actions .username {
+  display: none;
+}
+
+nav .nav-links .user-actions img {
+  border-radius: 5px;
+  width: 18px;
+  height: 18px;
+  margin: 0 0 -4px 0;
+}
+
+nav .nav-links .user-actions ul {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  display: none;
+  padding: 10px;
+  text-align: left;
+  background-color: var(--color-figcaption);
+  width: max-content;
+  border-radius: 5px;
+}
+
+nav .nav-links .user-actions li {
+  display: block;
+  margin-top: 5px;
+}
+
+nav .nav-links .user-actions li a {
+  color: var(--font-primary);
+}
+
+nav .nav-links .user-actions li:first-of-type {
+  margin-top: 0;
+}
+
 nav .nav-menu-button {
   flex: auto;
   display: none;
@@ -193,6 +233,14 @@ nav #menu-button .burger {
   nav .nav-links a {
     font-weight: 700;
     font-size: 19px;
+  }
+
+  nav .nav-links .user-actions .username {
+    display: inherit;
+  }
+
+  nav .nav-links .user-actions ul {
+    max-width: 100%;
   }
 
   nav .nav-overlay {

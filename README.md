@@ -7,16 +7,20 @@ The system provide:
 * Comment system
 * Administration
 
-## TODO list :
+## TODO list
 
-* [x] Vue index/accueil
-* [x] Vue index par tag
+* [x] Vue index/home
+* [x] Vue index by tag
 * [x] Vue post
 * [x] Vue user profile
-* [ ] Admin blog
+* [x] Admin blog
   * [x] Edit posts (editor WYSIWYG)
-  * [ ] Setup all forms to manage the blog
-* [ ] OAuth connection
+  * [x] Setup all forms to manage the blog
+* [x] OAuth connection
+* [ ] Add a page to edit own posts and another to edit one
+* [ ] Edit toolbar menu (user > connect / disconnect + my profile)
+* [ ] Check themes on all pages
+* [ ] Search Module
 
 ## Installation
 
