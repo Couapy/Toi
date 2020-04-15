@@ -14,6 +14,8 @@ The system provide:
 
 The following instructions are here to help you to setup Toi.
 
+**First of all, please setup a new secret key in `settings.py`.**
+
 ### Install dependencies
 
 Please install dependencies by:
@@ -26,8 +28,7 @@ Then add your domain to **ALLOWED_HOSTS**
 
 ### Database configuration
 
-By default, django will use `db.sqlite3` database file. If you want to switch to a mysql configuration,
-please edit the database variable in *Toi/settings.py* and create a `database.conf` like this:
+Please create a `database.conf` like this to configuration the database connection:
 
 ~~~~Properties
 [client]
