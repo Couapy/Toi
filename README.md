@@ -22,7 +22,10 @@ Please install dependencies by:
 Edit *settings.py* and set **DEBUG** to `False`.
 Then add your domain to **ALLOWED_HOSTS**
 
-Create a `database.conf` and paste this :
+### Database configuration
+
+By default, django will use `db.sqlite3` database file. If you want to switch to a mysql configuration,
+please edit the database variable in *Toi/settings.py* and create a `database.conf` like this:
 
 ~~~~Properties
 [client]
