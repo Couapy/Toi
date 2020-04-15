@@ -1,5 +1,7 @@
 # Toi blog
 
+![Units tests](https://github.com/Couapy/Toi/workflows/Units%20tests/badge.svg)
+
 Toi blog is a web app which allows you to create easily a blog.
 
 The system provide:
@@ -12,6 +14,8 @@ The system provide:
 
 The following instructions are here to help you to setup Toi.
 
+**First of all, please setup a new secret key in `settings.py`.**
+
 ### Install dependencies
 
 Please install dependencies by:
@@ -22,7 +26,9 @@ Please install dependencies by:
 Edit *settings.py* and set **DEBUG** to `False`.
 Then add your domain to **ALLOWED_HOSTS**
 
-Create a `database.conf` and paste this :
+### Database configuration
+
+Please create a `database.conf` like this to configuration the database connection:
 
 ~~~~Properties
 [client]
