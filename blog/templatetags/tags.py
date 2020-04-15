@@ -5,7 +5,7 @@ from .. import models
 register = template.Library()
 
 
-@register.inclusion_tag('gabarits/tags.html')
+@register.inclusion_tag('blog/gabarits/tags.html')
 def tags():
     tags = models.Tag.objects.all()
     return {'tags': tags}
