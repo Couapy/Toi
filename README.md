@@ -1,5 +1,7 @@
 # Toi blog
 
+![Units tests](https://github.com/Couapy/Toi/workflows/Units%20tests/badge.svg)
+
 Toi blog is a web app which allows you to create easily a blog.
 
 The system provide:
