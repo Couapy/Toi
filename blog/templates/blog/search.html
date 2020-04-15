@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block 'title' %}Recherche{% endblock%}
 
-{% block 'head' %}{% endblock%}
+{% block 'head' %}
+<meta name="robots" content="noindex, follow">
+<link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
+{% endblock%}
 
 {% block 'body' %}
 
-    {% for post in posts %}
-        {% include 'components/post_card.html' %}
-    {% endfor %}
+{% for post in posts %}
+    {% include 'blog/components/post_card.html' %}
+{% endfor %}
 
 {% endblock%}

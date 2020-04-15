@@ -25,8 +25,8 @@
 <meta name="twitter:app:country" content="fr">
 
 <!-- Style sheets -->
-<link rel="stylesheet" href="{% static 'styles/blog.css' %}">
-<link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+<link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
+<link rel="stylesheet" href="{% static 'blog/css/profile.css' %}">
 {% endblock %}
 
 {% block 'body' %}
@@ -47,7 +47,7 @@
 
 <main>
     {% for post in posts %}
-    {% include 'components/post_card.html' %}
+    {% include 'blog/components/post_card.html' %}
     {% endfor %}
 </main>
 

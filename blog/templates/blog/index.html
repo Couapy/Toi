@@ -33,14 +33,14 @@
 <meta name="twitter:app:country" content="fr">
 
 <!-- Style sheets -->
-<link rel="stylesheet" href="{% static 'styles/blog.css' %}">
+<link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
 {% endblock %}
 
 {% block 'body' %}
 <main>
   {% if posts %}
     {% for post in posts %}
-    {% include 'components/post_card.html' %}
+    {% include 'blog/components/post_card.html' %}
     {% endfor %}
   {% else %}
     <p style="color: var(--color-font)">Aucun article n'a été trouvé.</p>

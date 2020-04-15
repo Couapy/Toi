@@ -1,0 +1,63 @@
+main {
+    width: 800px;
+    max-width: 100%;
+    padding: 15px;
+    margin: auto;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="file"],
+input[type="submit"] {
+    --border: 1px solid #d1d1d1;
+
+    padding: 8px 10px;
+    width: 100%;
+    border: var(--border);
+}
+
+input[type="submit"] {
+    width: auto;
+    transition: border .3s;
+}
+
+input[type="submit"]:hover {
+    border-color: #afafaf;
+}
+
+.helptext {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.success {
+    color: green;
+}
+.error {
+    color: red;
+}
+
+/* Errors */
+.errorlist {
+    display: block;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.errorlist li {
+    color: red;
+}
+
+/* CKEditor */
+.django-ckeditor-widget {
+    width: 100%;
+}

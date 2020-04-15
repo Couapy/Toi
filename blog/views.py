@@ -37,7 +37,7 @@ def research(request):
     context = {
         'posts': posts
     }
-    return render(request, 'blog/test.html', context)
+    return render(request, 'blog/search.html', context)
 
 
 def tag(request, slug_tag):
