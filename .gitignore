@@ -1,5 +1,6 @@
 Toi/media/profile/*
 Toi/media/illustration/*
+database.conf
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

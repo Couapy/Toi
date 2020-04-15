@@ -25,7 +25,7 @@
                 <a href="#">
                     <span class="username">{{ user.username }}</span>
                     {% if user.is_authenticated %}
-                    <img src="{{ user.profile.image.url }}" alt="User profile">
+                    <img src="{{ user.profile.get_image }}" alt="User profile">
                     {% else %}
                     <img src="/media/faceless.svg" alt="User profile">
                     {% endif %}

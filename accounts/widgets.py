@@ -15,6 +15,9 @@ class ImagePreviewWidget(forms.widgets.FileInput):
     def render(self, name, value, attrs=None, **kwargs):
         input_html = super().render(name, value, attrs, **kwargs)
         id = attrs['id']
-        img_html = mark_safe(f'<br><br><img src="{value.url}" id="{id}_preview" class="preview-widget"/>')
+        if bool(value):
+            img_html = mark_safe(f'<br><br><img src="{value.url}" id="{id}_preview" class="preview-widget"/>')
+        else:
+            img_html = '<p>Aucune image n\'est actuellement uploadée.</p>'
         script = mark_safe(f'<script>listenImagePreview("#{id}", "#{id}_preview")</script>')
         return f'{input_html}{img_html}{script}'
