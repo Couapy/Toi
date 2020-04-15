@@ -67,6 +67,7 @@ def profile(request):
             )
             if profileform.is_valid():
                 profile = profileform.save()
+                return HttpResponseRedirect(reverse('profile') + "#profile")
         if 'userform' in POST:
             userform = UserForm(
                 data=request.POST,
@@ -75,6 +76,7 @@ def profile(request):
             )
             if userform.is_valid():
                 user = userform.save()
+                return HttpResponseRedirect(reverse('profile') + "#user")
         return HttpResponseRedirect(reverse('profile'))
 
     return render(

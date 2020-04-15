@@ -7,7 +7,7 @@ var editor = null
  */
 export class Editor {
 
-    constructor(params = {} ) {
+    constructor(params = {}) {
         /**
          * Setup the editor params
          */

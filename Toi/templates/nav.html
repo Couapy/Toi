@@ -32,6 +32,9 @@
                 </a>
                 {% if user.is_authenticated %}
                 <ul>
+                    {% if user.is_staff %}
+                        <li><a href="{% url 'admin:index' %}">Administation</a></li>
+                    {% endif %}
                     <li><a href="{% url 'profile' %}">Mon profil</a></li>
                     <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
                 </ul>
@@ -53,3 +56,12 @@
         </div>
     </div>
 </nav>
+
+<div class="modal">
+    <div class="modal-head">
+
+    </div>
+    <div class="modal-body">
+
+    </div>
+</div>
