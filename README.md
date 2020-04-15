@@ -18,7 +18,7 @@ The system provide:
   * [x] Setup all forms to manage the blog
 * [x] OAuth connection
 * [ ] Add a page to edit own posts and another to edit one
-* [ ] Edit toolbar menu (user > connect / disconnect + my profile)
+* [x] Edit toolbar menu (user > connect / disconnect + my profile)
 * [ ] Check themes on all pages
 * [ ] Search Module
 
@@ -26,11 +26,9 @@ The system provide:
 
 The following instructions are here to help you to setup Toi.
 
-Please make sure `Django`, `django_ckeditor`, `pillow` and `social-auth-app-django` packages are installed.
+Install dependencies by:
 
-Even if they are not installed please run :
-
-> pip3 install Django django_ckeditor social-auth-app-django pillow
+> pip3 install -r requirements.txt
 
 * Edit *settings.py*
   * Set debug to `False`

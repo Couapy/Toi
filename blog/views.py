@@ -1,13 +1,14 @@
 """This file contains all view for the blog application."""
-from django.shortcuts import render
-from django.http import Http404, JsonResponse, HttpResponse
-from .models import Post, Tag, Comment
 from django.contrib.auth.models import User
+from django.http import Http404, JsonResponse
+from django.shortcuts import render
 from django.urls import reverse
-from .forms import PublishCommentForm, EditCommentForm
+
+from .forms import EditCommentForm, PublishCommentForm
+from .models import Comment, Post, Tag
+
 
 # GET views
-
 
 def index(request):
     """Default view for the blog. This is the index of the site."""
@@ -16,6 +17,27 @@ def index(request):
         'posts': posts
     }
     return render(request, 'blog/index.html', context)
+
+
+def research(request):
+    """This is the view for researching post on blog."""
+
+    research = request.GET.get('q')
+    if research is None:
+        posts = Post.objects.all()
+    else:
+        posts = Post.objects.filter(
+            title__icontains=research
+        ) | Post.objects.filter(
+            body__icontains=research
+        ) | Post.objects.filter(
+            tags__value__icontains=research
+        )
+
+    context = {
+        'posts': posts
+    }
+    return render(request, 'blog/test.html', context)
 
 
 def tag(request, slug_tag):

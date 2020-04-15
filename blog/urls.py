@@ -5,8 +5,10 @@ urlpatterns = [
     # Indexes
     path('', views.index, name='index'),
     path('tag/<slug:slug_tag>', views.tag, name='tag'),
-    # User profile
+    # Author profile
     path('profile/<int:user_id>', views.profile, name='profile'),
+    # Research
+    path('search/', views.research, name='research'),
     # Comment system
     path('<slug:slug>/comment/<int:comment_id>/like/',
          views.comment_like, name="comment.like"),
