@@ -1,6 +1,7 @@
 # Toi blog
 
 ![Units tests](https://github.com/Couapy/Toi/workflows/Units%20tests/badge.svg)
+[![Known Vulnerabilities](https://snyk.io/test/github/Couapy/Toi/badge.svg)](https://snyk.io/test/github/{username}/{repo})
 
 Toi blog is a web app which allows you to create easily a blog.
 
